@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample HTML File</title>
+    <style>
+        /* Style for the input box */
+        #userInput {
+            width: 300px;
+            height: 30px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        /* Style for the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Style for the input boxes */
+        .editInput {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Input box -->
+    <label for="userInput">Enter your text:</label>
+    <input type="text" id="userInput" placeholder="Type here...">
+
+    <!-- Buttons -->
+    <button onclick="alert('Button clicked!')">Click me</button>
+    <button onclick="alert('Another button clicked!')">Another button</button>
+
+    <!-- Radio buttons -->
+    <div>
+        <input type="radio" id="option1" name="options" value="option1">
+        <label for="option1">Option 1</label>
+        <input type="radio" id="option2" name="options" value="option2">
+        <label for="option2">Option 2</label>
+        <input type="radio" id="option3" name="options" value="option3">
+        <label for="option3">Option 3</label>
+    </div>
+
+    <!-- Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="nameCell">John</td>
+                <td id="ageCell">25</td>
+                <td id="countryCell">USA</td>
+            </tr>
+            <tr>
+                <td id="nameInputCell"><input type="text" class="editInput" oninput="updateTableCell('nameCell', this.value)"></td>
+                <td id="ageInputCell"><input type="text" class="editInput" oninput="updateTableCell('ageCell', this.value)"></td>
+                <td id="countryInputCell"><input type="text" class="editInput" oninput="updateTableCell('countryCell', this.value)"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- JavaScript -->
+    <script>
+        function updateTableCell(cellId, value) {
+            document.getElementById(cellId).textContent = value;
+        }
+    </script>
+</body>
+</html>

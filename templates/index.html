@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+</head>
+<body>
+    <h2>Dynamic Table</h2>
+
+    <h3>Table 1</h3>
+    <form action="/update" method="post">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            {% for row in table1_data %}
+            <tr>
+                <td><input type="text" name="name{{ loop.index }}" value="{{ row.name }}"></td>
+                <td><input type="number" name="age{{ loop.index }}" value="{{ row.age }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <h3>Table 2</h3>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+            {% for row in table2_data %}
+            <tr>
+                <td><input type="text" name="product{{ loop.index }}" value="{{ row.product }}"></td>
+                <td><input type="number" name="price{{ loop.index }}" value="{{ row.price }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <button type="submit">Update Data</button>
+    </form>
+</body>
+</html>

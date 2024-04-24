@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample HTML File</title>
+    <style>
+        /* Style for the image */
+        img {
+            position: absolute;
+            cursor: move;
+            opacity: 1; /* Ensure the image is not transparent */
+        }
+    </style>
+</head>
+<body>
+    <!-- Input box for changing the header -->
+    <label for="newHeaderText">Enter new header text:</label>
+    <input type="text" id="newHeaderText" placeholder="New header text...">
+    <button onclick="changeHeader()">Change Header</button>
+
+    <!-- Original header -->
+    <h1 id="mainHeader">Welcome to My Website!</h1>
+
+    <!-- Button to reset header -->
+    <button onclick="resetHeader()">Reset Header</button>
+
+    <!-- Button to display image -->
+    <button onclick="displayImage()">Display Image</button>
+    <div id="imageContainer"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Store the original header text
+        const originalHeaderText = document.getElementById("mainHeader").textContent;
+
+        // Function to change the header text
+        function changeHeader() {
+            const newHeaderText = document.getElementById("newHeaderText").value;
+            const mainHeader = document.getElementById("mainHeader");
+            mainHeader.textContent = newHeaderText;
+        }
+
+        // Function to reset the header text
+        function resetHeader() {
+            const mainHeader = document.getElementById("mainHeader");
+            mainHeader.textContent = originalHeaderText;
+        }
+
+        // Function to display the image
+        function displayImage() {
+            const imageContainer = document.getElementById("imageContainer");
+            const image = document.createElement("img");
+            image.src = "Untitled.jpg"; // Replace "your_image_filename.jpg" with your image filename
+            image.style.left = "0"; // Initial position
+            image.style.top = "0"; // Initial position
+            image.draggable = true;
+            image.addEventListener("dragstart", dragStart);
+            image.addEventListener("drag", drag);
+            image.addEventListener("dragend", dragEnd);
+            imageContainer.innerHTML = ""; // Clear any existing content
+            imageContainer.appendChild(image);
+        }
+
+        // Function to handle drag start
+        function dragStart(event) {
+            // Set the data type and value for the dragged data
+            event.dataTransfer.setData("text/plain", null);
+            // Store the initial position of the image
+            event.dataTransfer.setData("initialX", event.clientX - event.target.offsetLeft);
+            event.dataTransfer.setData("initialY", event.clientY - event.target.offsetTop);
+        }
+
+        // Function to handle drag
+        function drag(event) {
+            // Calculate the new position of the image
+            const newX = event.clientX - event.dataTransfer.getData("initialX");
+            const newY = event.clientY - event.dataTransfer.getData("initialY");
+            // Update the position of the image
+            event.target.style.left = newX + "px";
+            event.target.style.top = newY + "px";
+        }
+
+        // Function to handle drag end
+        function dragEnd(event) {
+            // Do something if needed when drag ends
+        }
+    </script>
+</body>
+</html>
